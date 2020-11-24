@@ -21,6 +21,30 @@ const gameCodeDisplay = document.getElementById('gameCodeDisplay');
 newGameBtn.addEventListener('click', newGame);
 joinGameBtn.addEventListener('click', joinGame);
 
+var direction = 0;
+
+function move(direction) {
+  switch (direction) {
+    case 1:
+      socket.emit('keydown', 37);
+      console.log("left");
+      break;
+    case 2:
+      socket.emit('keydown', 38);
+      console.log("down");
+      break;
+    case 3:
+      socket.emit('keydown', 39);
+      console.log("right");
+      break;
+    case 4:
+      socket.emit('keydown', 40);
+      console.log("up");
+      break;
+    default:
+
+  }
+}
 
 function newGame() {
   socket.emit('newGame');
@@ -52,6 +76,7 @@ function init() {
   document.addEventListener('keydown', keydown);
   gameActive = true;
 }
+
 var lastKeyPress = document.getElementById("lastKeyPress");
 
 function keydown(e) {
