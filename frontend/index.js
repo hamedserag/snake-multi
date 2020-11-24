@@ -92,6 +92,8 @@ function keydown(e) {
         }
         break;
       default:
+        socket.emit('keydown', e.keyCode);
+        break;
 
     }
   }
