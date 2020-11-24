@@ -2,7 +2,7 @@ const BG_COLOUR = '#231f20';
 const SNAKE_COLOUR = '#c2c2c2';
 const FOOD_COLOUR = '#e66916';
 
-const socket = io('https://snakegameminders.herokuapp.com/');
+const socket = io('https://sleepy-island-33889.herokuapp.com/');
 
 socket.on('init', handleInit);
 socket.on('gameState', handleGameState);
@@ -53,8 +53,50 @@ function init() {
   gameActive = true;
 }
 
+var keyPress = [];
+
 function keydown(e) {
-  socket.emit('keydown', e.keyCode);
+
+  keyPress.push(e.key);
+  if (keyPress.length == 3) {
+    keyPress.shift();
+  }
+  if (keyPress.length > 1) {
+    switch (keyPress[0]) {
+      case "ArrowLeft":
+        if (keyPress[1] == "ArrowRight") {
+          console.log("cant go right");
+        } else {
+          socket.emit('keydown', e.keyCode);
+        }
+        break;
+      case "ArrowRight":
+        if (keyPress[1] == "ArrowLeft") {
+          console.log("cant go left");
+        } else {
+          socket.emit('keydown', e.keyCode);
+        }
+        break;
+      case "ArrowDown":
+        if (keyPress[1] == "ArrowUp") {
+          console.log("cant go up");
+        } else {
+          socket.emit('keydown', e.keyCode);
+        }
+        break;
+      case "ArrowUp":
+        if (keyPress[1] == "ArrowDown") {
+          console.log("cant go down");
+        } else {
+          socket.emit('keydown', e.keyCode);
+        }
+        break;
+      default:
+
+    }
+  }
+  console.log(keyPress);
+  //socket.emit('keydown', e.keyCode);
 }
 
 function paintGame(state) {
