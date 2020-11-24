@@ -34,3 +34,6 @@
   transform: rotate(-180deg);
   top: 60px;
 }
+.inactive{
+  display: none;
+}
