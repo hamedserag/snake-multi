@@ -26,7 +26,9 @@ var upKey = document.getElementById("up").disabled;
 var downKey = document.getElementById("down").disabled;
 var leftKey = document.getElementById("left").disabled;
 var rightKey = document.getElementById("right").disabled;
-
+function showControls(){
+  document.getElementById("controls").classList.remove("inactive");
+}
 function move(direction) {
   switch (direction) {
     case 1:
