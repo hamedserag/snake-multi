@@ -52,9 +52,21 @@ function init() {
   document.addEventListener('keydown', keydown);
   gameActive = true;
 }
+var lastKeyPress = document.getElementById("lastKeyPress");
 
 function keydown(e) {
-  socket.emit('keydown', e.keyCode);
+  if (lastKeyPress.innerHTML == 37 && e.keyCode == 39) {
+    console.log("cant move right");
+  } else if (lastKeyPress.innerHTML == 39 && e.keyCode == 37) {
+    console.log("cant move left");
+  } else if (lastKeyPress.innerHTML == 40 && e.keyCode == 38) {
+    console.log("cant move down");
+  } else if (lastKeyPress.innerHTML == 38 && e.keyCode == 40) {
+    console.log("cant move up");
+  } else {
+    socket.emit('keydown', e.keyCode);
+    lastKeyPress.innerHTML = e.keyCode;
+  }
 }
 
 function paintGame(state) {
