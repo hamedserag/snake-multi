@@ -1,6 +1,4 @@
-const {
-  GRID_SIZE
-} = require('./constants');
+const { GRID_SIZE } = require('./constants');
 
 module.exports = {
   initGame,
@@ -25,18 +23,10 @@ function createGameState() {
         x: 1,
         y: 0,
       },
-      snake: [{
-          x: 1,
-          y: 10
-        },
-        {
-          x: 2,
-          y: 10
-        },
-        {
-          x: 3,
-          y: 10
-        },
+      snake: [
+        {x: 1, y: 10},
+        {x: 2, y: 10},
+        {x: 3, y: 10},
       ],
     }, {
       pos: {
@@ -47,18 +37,10 @@ function createGameState() {
         x: 0,
         y: 0,
       },
-      snake: [{
-          x: 20,
-          y: 10
-        },
-        {
-          x: 19,
-          y: 10
-        },
-        {
-          x: 18,
-          y: 10
-        },
+      snake: [
+        {x: 20, y: 10},
+        {x: 19, y: 10},
+        {x: 18, y: 10},
       ],
     }],
     food: {},
@@ -89,18 +71,14 @@ function gameLoop(state) {
   }
 
   if (state.food.x === playerOne.pos.x && state.food.y === playerOne.pos.y) {
-    playerOne.snake.push({
-      ...playerOne.pos
-    });
+    playerOne.snake.push({ ...playerOne.pos });
     playerOne.pos.x += playerOne.vel.x;
     playerOne.pos.y += playerOne.vel.y;
     randomFood(state);
   }
 
   if (state.food.x === playerTwo.pos.x && state.food.y === playerTwo.pos.y) {
-    playerTwo.snake.push({
-      ...playerTwo.pos
-    });
+    playerTwo.snake.push({ ...playerTwo.pos });
     playerTwo.pos.x += playerTwo.vel.x;
     playerTwo.pos.y += playerTwo.vel.y;
     randomFood(state);
@@ -113,9 +91,7 @@ function gameLoop(state) {
       }
     }
 
-    playerOne.snake.push({
-      ...playerOne.pos
-    });
+    playerOne.snake.push({ ...playerOne.pos });
     playerOne.snake.shift();
   }
 
@@ -126,9 +102,7 @@ function gameLoop(state) {
       }
     }
 
-    playerTwo.snake.push({
-      ...playerTwo.pos
-    });
+    playerTwo.snake.push({ ...playerTwo.pos });
     playerTwo.snake.shift();
   }
 
@@ -159,44 +133,16 @@ function randomFood(state) {
 function getUpdatedVelocity(keyCode) {
   switch (keyCode) {
     case 37: { // left
-      if (playerOne.vel.x == 1) {
-        return;
-      } else {
-        return {
-          x: -1,
-          y: 0
-        };
-      }
+      return { x: -1, y: 0 };
     }
     case 38: { // down
-      if (playerOne.vel.y == 1) {
-        return;
-      } else {
-        return {
-          x: 0,
-          y: -1
-        };
-      }
+      return { x: 0, y: -1 };
     }
     case 39: { // right
-      if (playerOne.vel.x == -1) {
-        return;
-      } else {
-        return {
-          x: 1,
-          y: 0
-        };
-      }
+      return { x: 1, y: 0 };
     }
     case 40: { // up
-      if (playerOne.vel.y == -1) {
-        return;
-      } else {
-        return {
-          x: 0,
-          y: 1
-        };
-      }
+      return { x: 0, y: 1 };
     }
   }
 }
