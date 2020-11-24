@@ -1,7 +1,36 @@
-#lastKeyPress{
+#lastKeyPress {
   position: absolute;
   color: white;
 }
+
 #gameScreen {
-   display: none;
+  display: none;
+}
+
+.arrow {
+  position: relative;
+  width: 60px;
+  margin: 0;
+  padding: 0;
+}
+
+#up {
+  transform: rotate(-90deg);
+  top: 0px;
+}
+
+#down {
+  transform: rotate(90deg);
+  top: 120px;
+  left: -64px;
+}
+
+#right {
+  top: 60px;
+  left: 192px;
+}
+
+#left {
+  transform: rotate(-180deg);
+  top: 60px;
 }
