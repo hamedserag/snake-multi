@@ -80,6 +80,9 @@ io.on('connection', client => {
       if (-vel.x == state[roomName].players[client.number - 1].vel.x || -vel.y == state[roomName].players[client.number - 1].vel.y) {
         state[roomName].players[client.number - 1].vel = vel;
       }
+      else{
+        state[roomName].players[client.number - 1].vel = state[roomName].players[client.number - 1].vel;
+      }
     }
   }
 });
