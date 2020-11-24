@@ -53,52 +53,8 @@ function init() {
   gameActive = true;
 }
 
-var keyPress = [];
-
 function keydown(e) {
-
-  keyPress.push(e.key);
-  if (keyPress.length == 3) {
-    keyPress.shift();
-  }
-  if (keyPress.length > 1) {
-    switch (keyPress[0]) {
-      case "ArrowLeft":
-        if (keyPress[1] == "ArrowRight") {
-          console.log("cant go right");
-        } else {
-          socket.emit('keydown', e.keyCode);
-        }
-        break;
-      case "ArrowRight":
-        if (keyPress[1] == "ArrowLeft") {
-          console.log("cant go left");
-        } else {
-          socket.emit('keydown', e.keyCode);
-        }
-        break;
-      case "ArrowDown":
-        if (keyPress[1] == "ArrowUp") {
-          console.log("cant go up");
-        } else {
-          socket.emit('keydown', e.keyCode);
-        }
-        break;
-      case "ArrowUp":
-        if (keyPress[1] == "ArrowDown") {
-          console.log("cant go down");
-        } else {
-          socket.emit('keydown', e.keyCode);
-        }
-        break;
-      default:
-        socket.emit('keydown', e.keyCode);
-        break;
-
-    }
-  }
-  console.log(keyPress);
-  //socket.emit('keydown', e.keyCode);
+  socket.emit('keydown', e.keyCode);
 }
 
 function paintGame(state) {
