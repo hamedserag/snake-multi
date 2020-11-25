@@ -22,10 +22,6 @@ newGameBtn.addEventListener('click', newGame);
 joinGameBtn.addEventListener('click', joinGame);
 
 var direction = 0;
-var upKey = document.getElementById("up").disabled;
-var downKey = document.getElementById("down").disabled;
-var leftKey = document.getElementById("left").disabled;
-var rightKey = document.getElementById("right").disabled;
 function showControls(){
   document.getElementById("controls").classList.remove("inactive");
 }
@@ -33,31 +29,19 @@ function move(direction) {
   switch (direction) {
     case 1:
       socket.emit('keydown', 37);
-      rightKey = true;
-      upKey = false;
-      downKey = false;
       console.log("left");
       break;
     case 2:
       socket.emit('keydown', 38);
       console.log("up");
-      downKey = true;
-      leftKey = false;
-      rightKey = false;
       break;
     case 3:
       socket.emit('keydown', 39);
-      leftKey = true;
-      upKey = false;
-      downKey = false;
       console.log("right");
       break;
     case 4:
       socket.emit('keydown', 40);
       console.log("down");
-      upKey = true;
-      leftKey = false;
-      rightKey = false;
       break;
     default:
 
