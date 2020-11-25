@@ -21,32 +21,6 @@ const gameCodeDisplay = document.getElementById('gameCodeDisplay');
 newGameBtn.addEventListener('click', newGame);
 joinGameBtn.addEventListener('click', joinGame);
 
-var direction = 0;
-function showControls(){
-  document.getElementById("controls").classList.remove("inactive");
-}
-function move(direction) {
-  switch (direction) {
-    case 1:
-      socket.emit('keydown', 37);
-      console.log("left");
-      break;
-    case 2:
-      socket.emit('keydown', 38);
-      console.log("up");
-      break;
-    case 3:
-      socket.emit('keydown', 39);
-      console.log("right");
-      break;
-    case 4:
-      socket.emit('keydown', 40);
-      console.log("down");
-      break;
-    default:
-
-  }
-}
 
 function newGame() {
   socket.emit('newGame');
@@ -79,21 +53,8 @@ function init() {
   gameActive = true;
 }
 
-var lastKeyPress = document.getElementById("lastKeyPress");
-
 function keydown(e) {
-  if (lastKeyPress.innerHTML == 37 && e.keyCode == 39) {
-    console.log("cant move right");
-  } else if (lastKeyPress.innerHTML == 39 && e.keyCode == 37) {
-    console.log("cant move left");
-  } else if (lastKeyPress.innerHTML == 40 && e.keyCode == 38) {
-    console.log("cant move down");
-  } else if (lastKeyPress.innerHTML == 38 && e.keyCode == 40) {
-    console.log("cant move up");
-  } else {
-    socket.emit('keydown', e.keyCode);
-    lastKeyPress.innerHTML = e.keyCode;
-  }
+  socket.emit('keydown', e.keyCode);
 }
 
 function paintGame(state) {
